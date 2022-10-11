@@ -1,0 +1,40 @@
+<div class="bg-content">
+  <h5 class="text-center">SELECCIONA 6 POKEMON Y REGISTRA TU NICKNAME</h5>
+  <form class="text-center" ngNativeValidate #f [formGroup]="formRegisterPokemon" (ngSubmit)="registerUser()">
+    <div class="mb-3 col-12 col-md-6 m-auto mt-3 m-auto form-group">
+      <label for="name" class="form-label">Nickname</label>
+      <input type="text" class="form-control form-control-sm" formControlName="name" id="name" aria-describedby="name">
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Registrar</button>
+
+
+    <div class="container mt-5 pokemon">
+      <div *ngIf="loading_pokemon">
+        <h4>Cargando Pokedex...</h4>
+        <div class="spinner-grow text-primary" role="status"></div>
+      </div>
+      <div *ngIf="!loading_pokemon" class="">
+        <div class="d-inline p-3"  *ngFor="let item of pokemon">
+          <label class="option-pokemon" id="option-pokemon">
+            <input type="checkbox" class="checkbox" value="item.id" name="pokemon_id_{{item.id}}" [disabled]="disabledPokemon(item.id)" (change)="selectPokemon(item.id, item)">
+            <div class="card border m-2 bg-image option_select" [ngClass]=" { 'disabled' : disabledPokemon(item.id)}" style="width: 10rem; display: inline-flex;">
+              <img src="{{ item.sprites.front_default }}" alt="" class="img-fluid bg-light" style="border-radius: 6em/6em;">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="showModal(item)" >
+                  Info
+                </button>
+                <!-- <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+                <a href="#" class="btn btn-primary">Ir a algún lugar</a> -->
+              </div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+</div>

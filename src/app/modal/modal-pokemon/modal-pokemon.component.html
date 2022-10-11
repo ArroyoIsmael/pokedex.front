@@ -1,0 +1,55 @@
+<div class="bg-modal" [class.oculto] ="modalPokemonService.ocultarModal">
+
+  <div class="modal" tabindex="-1" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #fff3cd">
+        <div class="modal-header">
+          <h2 class="modal-title" *ngIf="!modalPokemonService.is_user">No. {{ modalPokemonService.numb }}</h2>
+          <h2 class="modal-title" *ngIf="modalPokemonService.is_user">Nickname:  {{ modalPokemonService.name_user }}</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="modalPokemonService.cerrarModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="!modalPokemonService.is_user">
+
+          <img src="{{ modalPokemonService.img }}" alt="" class="img-thumbnail mx-auto d-block img-fluid">
+
+          <div class="text-center mt-2">
+            <h4>{{ modalPokemonService.name }}</h4>
+            <h5 class="mt-2">Estadísticas</h5>
+            <ul class="list-inline" *ngFor="let stats of modalPokemonService.stats">
+              <li class="list-inline-item" >{{ stats.stat.name }} : {{stats.base_stat}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-body" *ngIf="modalPokemonService.is_user">
+          <div *ngFor="let item of modalPokemonService.pokemon" class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4 m-auto">
+                <img src="{{ item.sprites.front_default }}" alt="" class="img-fluid bg-light" style="border-radius: 6em/6em;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title text-primary">{{ item.name }}</h5>
+                  <h5 class="text-secondary" *ngFor="let type of item.types"> Tipo: {{ type.type.name }}</h5>
+                  <h5 class="mt-2">Estadísticas </h5>
+                  <ul class="list-inline" *ngFor="let stat of item.stats">
+                    <li class="list-inline-item" >{{ stat.stat.name }} : {{stat.base_stat}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modalPokemonService.cerrarModal()">Cerrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

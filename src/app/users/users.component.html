@@ -1,0 +1,31 @@
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID Usuario</th>
+        <th>NickName</th>
+        <th>Pokemon 1</th>
+        <th>Pokemon 2</th>
+        <th>Pokemon 3</th>
+        <th>Detalle</th>
+        <!-- <th>Direccion Tienda</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: page }"  class="text-center">
+        <td>{{ user.id  }}</td>
+        <td>{{ user.name }}</td>
+
+        <td>{{user.pokemon_name1}}</td>
+        <td>{{user.pokemon_name2}}</td>
+        <td>{{user.pokemon_name3}}</td>
+        <td><button type="button" (click)="showModal(user.name, user.all_pokemon)" class="btn btn-warning">Detalle</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="page = $event" previousLabel="Previous"
+  nextLabel="Next"></pagination-controls>
+
+
+</div>
+

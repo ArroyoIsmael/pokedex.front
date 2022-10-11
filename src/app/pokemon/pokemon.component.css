@@ -1,0 +1,36 @@
+.bg-content {
+  background-color: #79dfc1;
+}
+
+.bg-image {
+  background-color: #d2f4ea;
+}
+
+
+.checkbox{
+
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
+.option-pokemon .option_select {
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.option-pokemon .checkbox:checked ~ .option_select {
+
+  border-radius: 20px!important;
+  background-color: #fbcba1!important;
+  box-shadow: 1px 3px 10px 3px #f89843;
+}
+
+.disabled {
+  background-color: #ced4da!important;
+  box-shadow: 1px 3px 10px 3px #adb5bd;
+}
+
